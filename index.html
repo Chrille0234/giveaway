@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>Phonebook</title>
+    <style>
+      body {
+        display: flex;
+
+        height: 100vh;
+        margin: 0;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .tingting {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        z-index: 2;
+        color: white;
+      }
+      .baggrund{
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        z-index: 1;
+        background-image: url("flag.png");
+        background-size: cover;
+        filter: blur(10px);
+      }
+
+      label {
+        margin-bottom: 0.5em;
+      }
+      .baggrundsfarve{
+        background-color: hsla(0, 0%, 0%, 0.37);
+        padding: 10px;
+        border-radius: 15px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="baggrund"></div>
+    <div class="tingting">
+      <div class="baggrundsfarve">
+    <h1>Logo giveaway</h1>
+    <form >
+      <label>Navn:</label>
+      <input type="text" id="navn" required placeholder="Jørgen"/>
+      <label>Telefon:</label>
+      <input type="text" id="nummer" placeholder="+45 01 234 5678" required />
+      <button type="submit"  onclick="tilføjTilListe(event)">Deltag</button>
+    </form>
+
+    <h2>Deltagere</h2>
+    <ul id="Entries"></ul>
+    </div>
+  </div>
+    <script>
+      const giveaway = [];
+
+      function tilføjTilListe(event) {
+        event.preventDefault();
+
+
+        const navn = document.getElementById('navn').value;
+        const nummer = document.getElementById('nummer').value;
+        giveaway.push({ navn, nummer });
+        opdaterListe();
+      }
+
+      function opdaterListe() {
+        const entries = document.getElementById('Entries');
+        Entries.innerHTML = '';
+        for (const entry of giveaway) {
+          const li = document.createElement('li');
+          li.innerText = `${entry.navn}: ${entry.nummer}`;
+          Entries.appendChild(li);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
